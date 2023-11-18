@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500;700&display=swap');
+
 body{
     background-color: #211940;
     display: flex;
@@ -10,7 +12,7 @@ ul {
     display: flex;
     justify-content: center;
   }
-img{
+.logo{
     height: 100px;
 }
 #hub{
