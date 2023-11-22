@@ -34,6 +34,7 @@ const mudaJogador = () => {
     // Realizar Jogadas
 const jogada = (e) => {
     const campo = e.target;
+    document.getElementById('rodada').disabled = false;
 
     // Marca X ou O
     const adicionarClasse = jogadorO ? 'o' : 'x';
@@ -66,6 +67,7 @@ const novoJogo = () => {
     for (const campo of todosCampos){
         // Resetando Grade
         resetaGrade(campo);
+        document.getElementById('rodada').disabled = true;
 
         // Começando Jogo
         campo.addEventListener("click", jogada,{  once:true });

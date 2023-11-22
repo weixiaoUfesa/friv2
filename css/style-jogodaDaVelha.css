@@ -123,7 +123,13 @@ p{
     font-family: "Rubik", sans-serif;
     color: #F9F9F9;
 }
-.botoes button:hover{
+.botoes button:disabled{
+    background-color: #8E45BF;
+    opacity: 60%;
+
+    cursor: default;
+}
+.botoes button:not(:disabled):hover{
     background-color: #C1D98F;
     color: #211940;
 
