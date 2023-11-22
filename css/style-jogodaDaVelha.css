@@ -18,9 +18,15 @@ body{
     justify-content: center;
     align-items: center;
 }
-.vezJogador{
+.mensagem{
     font-weight: 700;
     font-size: 54px;
+}
+.mensagem-X{
+    color: #C1D98F;
+}
+.mensagem-O{
+    color: #8E45BF;
 }
 .gradeJogo{
     width: 340px;
@@ -32,13 +38,42 @@ body{
     flex-wrap: wrap;
     gap: 20px;
 }
-.gradeJogo button{
+.campo:not(.x):not(.o){
     width: 100px;
     height: 100px;
     background-color: rgb(250, 250, 250, 0%);
     border-style: none;
 
     cursor: pointer;
+}
+.gradeJogo.x .campo:not(.x):not(.o):hover,
+.gradeJogo.o .campo:not(.x):not(.o):hover{
+    opacity: 0.3 !important;
+}
+.campo.x,
+.gradeJogo.x .campo:not(.x):not(.o):hover{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(250, 250, 250, 0%);
+    border-style: none;
+    
+    background-image: url(../images/jogo-da-velha/X.png);
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0;
+}
+.campo.o,
+.gradeJogo.o .campo:not(.x):not(.o):hover{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(250, 250, 250, 0%);
+    border-style: none;
+
+    background-image: url(../images/jogo-da-velha/O.png);
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .pontuacao{
     width: 50%;
@@ -53,7 +88,7 @@ h3{
     font-weight: 700;
     font-size: 32px;
 }
-.pontuacao-jogador{
+.jogador{
     width: 50%;
     font-weight: 500;
     font-size: 24px;
@@ -72,7 +107,7 @@ p{
     justify-content: center;
     gap: 15px;
 }
-.reiniciar{
+.botoes button{
     background-color: #8E45BF;
     border-style: none;
     border-radius: 10px;
@@ -88,7 +123,7 @@ p{
     font-family: "Rubik", sans-serif;
     color: #F9F9F9;
 }
-.reiniciar:hover{
+.botoes button:hover{
     background-color: #C1D98F;
     color: #211940;
 

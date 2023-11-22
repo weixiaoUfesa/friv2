@@ -18,33 +18,37 @@
         <li><a href="../index.html"><img class="logo" src="../images/logo-friv2.png" alt="Logo Friv2"></a></li>
     </ul>
     <div class="container">
-        <h2 class="vezJogador">Jogador</h2>
-        <div class="gradeJogo">
-            <button class="campo-1" ><img class=""></button>
-            <button class="campo-2" ><img class=""></button>
-            <button class="campo-3" ><img class=""></button>
-            <button class="campo-4" ><img class=""></button>
-            <button class="campo-5" ><img class=""></button>
-            <button class="campo-6" ><img class=""></button>
-            <button class="campo-7" ><img class=""></button>
-            <button class="campo-8" ><img class=""></button>
-            <button class="campo-9" ><img class=""></button>
+        <h2 class="mensagem">Jogador <b class="mensagem-X">X</b></h2>
+        <div class="gradeJogo" data-grade>
+            <button class="campo" data-campo></button>
+            <button class="campo" data-campo></button>
+            <button class="campo" data-campo></button> 
+            <button class="campo" data-campo></button>
+            <button class="campo" data-campo></button>
+            <button class="campo" data-campo></button>
+            <button class="campo" data-campo></button>
+            <button class="campo" data-campo></button>
+            <button class="campo" data-campo></button>
         </div>
         <div class="pontuacao">
         <h3>Pontuação</h3>
-        <div class="pontuacao-jogador">
+        <div class="mensagem-X jogador">
             <h4>Jogador X</h4>
             <p class="pontuacao-X">0</p>
         </div>
-        <div class="pontuacao-jogador">
+        <div class="mensagem-O jogador">
             <h4>Jogador O</h4>
             <p class="pontuacao-O">0</p>
         </div>
         <div class="botoes">
-            <button class="reiniciar">Nova Rodada</button>
-            <button class="reiniciar">Novo Jogo</button>
+            <button onclick="novaRodada()">Nova Rodada</button>
+            <button onclick="novoJogo()">Novo Jogo</button>
         </div>
     </div>
 </body>
+
+<footer>
+    <script src="../js/jogoDaVelha.js"></script>
+</footer>
 
 </html>
