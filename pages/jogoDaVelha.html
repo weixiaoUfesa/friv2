@@ -18,7 +18,7 @@
         <li><a href="../index.html"><img class="logo" src="../images/logo-friv2.png" alt="Logo Friv2"></a></li>
     </ul>
     <div class="container">
-        <h2 class="mensagem">Jogador <b class="mensagem-X">X</b></h2>
+        <div class="mensagem"><h2 data-mensagem></h2><b class="" data-mensagemJogador></b></div>
         <div class="gradeJogo" data-grade>
             <button class="campo" data-campo></button>
             <button class="campo" data-campo></button>
@@ -34,11 +34,11 @@
         <h3>Pontuação</h3>
         <div class="mensagem-X jogador">
             <h4>Jogador X</h4>
-            <p class="pontuacao-X">0</p>
+            <p class="pontuacao-X" data-X></p>
         </div>
         <div class="mensagem-O jogador">
             <h4>Jogador O</h4>
-            <p class="pontuacao-O">0</p>
+            <p class="pontuacao-O" data-O></p>
         </div>
         <div class="botoes">
             <button onclick="novaRodada()" id="rodada">Nova Rodada</button>

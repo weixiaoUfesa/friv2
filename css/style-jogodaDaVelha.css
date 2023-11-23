@@ -21,6 +21,8 @@ body{
 .mensagem{
     font-weight: 700;
     font-size: 54px;
+    display: flex;
+    gap: 20px;
 }
 .mensagem-X{
     color: #C1D98F;
@@ -46,12 +48,15 @@ body{
 
     cursor: pointer;
 }
+.campo.desabilitado{
+    cursor:default !important;
+}
 .gradeJogo.x .campo:not(.x):not(.o):hover,
 .gradeJogo.o .campo:not(.x):not(.o):hover{
     opacity: 0.3 !important;
 }
 .campo.x,
-.gradeJogo.x .campo:not(.x):not(.o):hover{
+.gradeJogo.x .campo:not(.x):not(.o):not(.desabilitado):hover{
     width: 100px;
     height: 100px;
     background-color: rgb(250, 250, 250, 0%);
@@ -64,7 +69,7 @@ body{
     border: 0;
 }
 .campo.o,
-.gradeJogo.o .campo:not(.x):not(.o):hover{
+.gradeJogo.o .campo:not(.x):not(.o):not(.desabilitado):hover{
     width: 100px;
     height: 100px;
     background-color: rgb(250, 250, 250, 0%);

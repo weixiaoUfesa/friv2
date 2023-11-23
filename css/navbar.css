@@ -6,10 +6,10 @@ body{
 }
 ul {
     width: 100vw;
-    padding: 25px;
+    padding: 15px;
     display: flex;
     justify-content: center;
   }
 .logo{
-    height: 100px;
+    height: 80px;
 }
