@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500;700&display=swap');
+
+body{
+    font-family: "Rubik", sans-serif;
+    color: #F9F9F9;
+}
+
 main{
     display: flex;
     flex-direction: column;
@@ -7,29 +14,39 @@ main{
     align-items: center;
     justify-content: center;
     padding: 20px 20px 50px;
+    margin-top: 0px;
+}
+
+.div-header{
+    width: 100%;
 }
 
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #bb0b0b;
-    font-size: 1.2em;
-    width: 60%;
-   
+    background-color: rgb(193, 217, 143);
+    font-size: 1.5em;
+    width: 36%;
     padding: 30px;
-    margin: 0 auto; /* This will center the header horizontally */
-    border-radius: 5px;
+    margin: 0 auto; 
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-bottom: 15px;
   }
 
 .grid{
     display: grid;
     grid-template-columns: repeat(5,1fr);
     gap: 15px;
-    width: 60%;
-   
+    width: 36%;
+    height: 30%;
+    padding: 5px 15px 5px;
+    background-color: rgb(39, 22, 36, 30%);
     margin: 0 auto;
     margin: 0 auto;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 /*criando design das cartaas e fazendo animação enquanto ela vira*/
@@ -40,6 +57,8 @@ header {
     position: relative;
     transition: all 400ms ease; /*transição tempo e tipo*/
     transform-style: preserve-3d;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 /*criando uma class geral para a formatação comum 

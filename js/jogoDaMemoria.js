@@ -30,6 +30,18 @@ const createElement = (tag, className) =>{
     return elemento;
 }
 
+/*exibir a mensagem que ganhou e volta para a pagina inicial*/
+const Alerta = () => {
+    Swal.fire({
+        text:   'Parabéns',
+        title: 'Venceu!',
+    }).then((resultado) =>{
+        if(resultado.isConfirmed){
+            window.location.href = 'login-jogoDaMemoria.html'
+        }
+    })
+}
+
 let primeiraCarta = '';
 let segundaCarta = '';
 
@@ -38,7 +50,7 @@ const checarFimJogo = () =>{
 
     if(disabledCartas.length == 20){
         clearInterval(this.loop);
-        alert('Parabens');
+        Alerta();
     }
 }
 
@@ -97,7 +109,7 @@ const criarCarta = (personagens) => {
     const verso = createElement('div', 'face verso');
 
 
-    frente.style.backgroundImage = `url('../img/${personagens}.png')`;
+    frente.style.backgroundImage = `url('../images/jogo-da-memoria/${personagens}.png')`;
     carta.appendChild(frente);
     carta.appendChild(verso);
 
