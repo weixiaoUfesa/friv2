@@ -15,7 +15,7 @@ const infoEnviar = (event) => {
     event.preventDefault();
 
     localStorage.setItem('player', input.value);
-    window.location.href = 'jogo.html';
+    window.location.href = 'jogoDaMemoria.html';
 }
 
 input.addEventListener('input', validarInput);
