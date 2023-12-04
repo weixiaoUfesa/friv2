@@ -6,20 +6,58 @@
     <title>Lian Lian Kan Game</title>
     <style>
         .game-board {
+          
             display: grid;
-            grid-template-columns: repeat(6, 200px);
-            grid-template-rows: repeat(9, 200px);
-            gap: 5px;
+            grid-template-columns: repeat(8, 200px);
+            grid-template-rows: repeat(8, 200px);
+            gap: 20px;
         }
 
         .game-tile {
             width: 200px;
             height: 200px;
-            background-color: lightblue;
+            background-color: rgb(0, 0, 0);
             text-align: center;
             line-height: 50px;
             cursor: pointer;
         }
+
+
+.game-tile {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.game-tile:hover {
+  transform: scale(1.13);
+}
+
+.game-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game-board {
+
+  justify-content: center;
+  align-items: center;
+  
+
+  background-color: #141414;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+}
+
     </style>
 </head>
 <body>
@@ -38,7 +76,7 @@ function getRandomInt(min, max) {
     let randomIntegers = [];
 
     for (let i = 0; i < 18; i++) {
-        const randomInt = getRandomInt(0, 9);
+        const randomInt = getRandomInt(1, 10);
        // const randomInt = 1;
         randomIntegers.push(randomInt);
     }
@@ -65,8 +103,8 @@ return shuffledArray;
     }
 
     let total=36;
-    const linhas = 6;
-    const colunas = 6;
+    const linhas = 8;
+    const colunas = 8;
     const value=0;
     let selectedTile = null;
 
@@ -78,28 +116,41 @@ function initializeGameBoard() {
     for (let i = 0; i < linhas; i++) {
 
             let linhas = [];
-            for (let j = 0; j < colunas; j++) {    
+            for (let j = 0; j <colunas; j++) {    
                 const tile = document.createElement('div');
                 tile.classList.add('game-tile');
                 tile.dataset.linhas = i;
                 tile.dataset.colunas = j;
+                if(j>=1&&j<=6&&i>=1&&i<=6){
+
                 tile.dataset.value = valueToInsert[temp];
                 linhas.push(valueToInsert[temp]);
+                temp=temp+1;
+              }else{
+                tile.dataset.value = -1;
+                linhas.push(-1);}
+              
                 //tile.textContent = i + '-' + j+ '-' + valueToinsert[temp];
-                console.log("Shuffled Array:", valueToInsert[temp]);
-                temp=temp+1;  
+                
+                
         //img
+        if(j>=1&&j<=6&&i>=1&&i<=6){
         const img = document.createElement('img');
         img.src = `https://github.com/weixiaoUfesa/pweb_2020.2_weixiaoChen/blob/main/CoisasDeUnifesp/jogo/${Number(tile.dataset.value)}.gif?raw=true`;
         img.style.width = '200px';
         img.style.height = '200px';
         tile.appendChild(img);
-        tile.addEventListener('click', handleTileClick);
+        tile.addEventListener('click', handleTileClick); }
             gameBoard.appendChild(tile);
             }
         gameMatrix.push(linhas);
     }
-        
+    /*for (let i = 0; i < 8; i++) {
+for (let j = 0; j <8; j++){
+  
+    if(j>=1&&j<=6&&i>=1&&i<=6){
+    }else{gameMatrix[i][j]=-1}
+}  }*/
     return gameMatrix;
         
     }
@@ -168,7 +219,7 @@ function semViradaReta(tile1, tile2) {
         let linha = Number(tile1.dataset.linhas) + linhaDelta;
         let coluna = Number(tile1.dataset.colunas) + colunaDelta;
 
-        while (linha >= 0 && linha <= 5 && coluna >= 0 && coluna <= 5) {
+        while (linha >= 0 && linha <= 7 && coluna >= 0 && coluna <= 7) {
             if (gameMatrix[linha][coluna] !== -1) {
                 MatrizTemp[linha][coluna] = -2;
                 break;
@@ -208,7 +259,7 @@ function umaVirada(tile1, tile2){
     // let i = Number(tile1.dataset.colunas)+1;
     
     let i = Number(tile1.dataset.colunas);
-    while (i <= 5){
+    while (i <= 7){
         if(gameMatrix[tile1.dataset.linhas][i]>0){  break; }
         if (gameMatrix[tile1.dataset.linhas][i]<0){//nao vazio, para cima
             for (let linha = tile1.dataset.linhas; linha >=0; linha--) {
@@ -220,7 +271,7 @@ function umaVirada(tile1, tile2){
         }
 
         if (gameMatrix[tile1.dataset.linhas][i]<0){//nao vazio, para baixo
-            for (let linha = tile1.dataset.linhas; linha <= 5; linha++) {
+            for (let linha = tile1.dataset.linhas; linha <= 7; linha++) {
               if (gameMatrix[linha ][i] > 0) {//nao vazio, marcar e sair
                 MatrizTemp2[linha][i] = -2;
                 break;
@@ -251,7 +302,7 @@ function umaVirada(tile1, tile2){
         }
 
         if (gameMatrix[tile1.dataset.linhas][a]<0){//不是空格，往xia搜索
-            for (let linha = tile1.dataset.linhas; linha <= 5; linha++) {
+            for (let linha = tile1.dataset.linhas; linha <= 7; linha++) {
               if (gameMatrix[linha ][a] > 0) {//不是空格，标记，退出
                 MatrizTemp2[linha][a] = -2;
                 break;
@@ -262,7 +313,7 @@ function umaVirada(tile1, tile2){
 
         if( a < 0 ){ break;}
         if (Number(gameMatrix[tile1.dataset.linhas][a]) !== -1) {
-        MatrizTemp[Number(tile1.dataset.linhas)][a] = -2;   
+        MatrizTemp2[Number(tile1.dataset.linhas)][a] = -2;   
         break;
     }
     a--;
@@ -272,7 +323,8 @@ function umaVirada(tile1, tile2){
 
  //let w = Number(tile1.dataset.linhas)+1;
  let w = Number(tile1.dataset.linhas);
- while ( w <= 5 ){console.log (`gameMatrix/`,gameMatrix[w][tile1.dataset.colunas]);
+ while ( w <= 7 ){
+  
         if(gameMatrix[w][tile1.dataset.colunas]>0){  break; }
         if (gameMatrix[w][tile1.dataset.colunas]<0){//不是空格，往you搜索
             for (let colunas = tile1.dataset.colunas; colunas >=0; colunas--) {
@@ -284,7 +336,7 @@ function umaVirada(tile1, tile2){
         }
 
         if (gameMatrix[w][tile1.dataset.colunas]<0){//不是空格，往zuo搜索
-            for (let colunas = tile1.dataset.colunas; colunas <= 5; colunas++) {
+            for (let colunas = tile1.dataset.colunas; colunas <= 7; colunas++) {
               if (gameMatrix[w][colunas] > 0) {//不是空格，标记，退出
                 MatrizTemp2[w][colunas] = -2;
                 break;
@@ -311,7 +363,7 @@ function umaVirada(tile1, tile2){
         }
 
         if (gameMatrix[s][tile1.dataset.colunas]<0){//不是空格，往xia搜索
-            for (let colunas = tile1.dataset.colunas; colunas <= 5; colunas++ ) {
+            for (let colunas = tile1.dataset.colunas; colunas <=7; colunas++ ) {
               if (gameMatrix[s][colunas] > 0) {//不是空格，标记，退出
                 MatrizTemp2[s][colunas] = -2;
                 break;
@@ -337,7 +389,7 @@ function duasVirada(tile1, tile2)
     let i = Number(tile1.dataset.colunas)+1;
     //para direito>
 
-    while (i <= 5) {
+    while (i <= 7) {
         if(gameMatrix[tile1.dataset.linhas][i]>0){  break; }
         if (gameMatrix[tile1.dataset.linhas][i]<0){//nao vazio, para cima
             for (let linha = tile1.dataset.linhas; linha >=0; linha--) {
@@ -348,7 +400,7 @@ function duasVirada(tile1, tile2)
                 break; } }
 
 
-                for (let j=i; j<=5; j++) { // 右for
+                for (let j=i; j<=7; j++) { // 右for
               if (gameMatrix[linha][j] > 0) {//nao vazio, marcar e sair
                 MatrizTemp2[linha][j] = -2;
                 break;
@@ -370,7 +422,7 @@ function duasVirada(tile1, tile2)
                 break; } }
 
 
-                for (let j=i; j<=5; j++) { // 右for
+                for (let j=i; j<=7; j++) { // 右for
               if (gameMatrix[linha][j] > 0) {//nao vazio, marcar e sair
                 MatrizTemp2[linha][j] = -2;
                 break;
@@ -403,7 +455,7 @@ let a = Number(tile1.dataset.colunas)-1;
                 break; } }
 
 
-                for (let j=a; j<=5; j++) { // 右for
+                for (let j=a; j<=7; j++) { // 右for
               if (gameMatrix[linha][j] > 0) {//nao vazio, marcar e sair
                 MatrizTemp2[linha][j] = -2;
                 break;
@@ -427,7 +479,7 @@ let a = Number(tile1.dataset.colunas)-1;
                 break; } }
 
 
-                for (let j=a; j<=5; j++) { // 右for
+                for (let j=a; j<=7; j++) { // 右for
               if (gameMatrix[linha][j] > 0) {//nao vazio, marcar e sair
                 MatrizTemp2[linha][j] = -2;
                 break;
@@ -451,7 +503,7 @@ let a = Number(tile1.dataset.colunas)-1;
  //para baixo
 
  let w = Number(tile1.dataset.linhas)+1;
- while ( w <= 5 ){
+ while ( w <= 7 ){
         if(gameMatrix[w][tile1.dataset.colunas]>0){  break; }
         if (gameMatrix[w][tile1.dataset.colunas]<0){//不是空格，往you搜索
             for (let colunas = tile1.dataset.colunas; colunas >=0; colunas--) {
@@ -462,7 +514,7 @@ let a = Number(tile1.dataset.colunas)-1;
                 break; } }
 
 
-                for (let j=w; j<=5; j++) { // 下 for
+                for (let j=w; j<=7; j++) { // 下 for
                 if (gameMatrix[j][colunas] > 0) {//nao vazio, marcar e sair
                 MatrizTemp2[j][colunas] = -2;
                 break;
@@ -478,7 +530,7 @@ let a = Number(tile1.dataset.colunas)-1;
         }
 
         if (gameMatrix[w][tile1.dataset.colunas]<0){//不是空格，往zuo搜索
-            for (let colunas = tile1.dataset.colunas; colunas <= 5; colunas++) {
+            for (let colunas = tile1.dataset.colunas; colunas <= 7; colunas++) {
 
                 for (let j=w; j>=0; j--) { // // 上for
                 if (gameMatrix[j][colunas] > 0) {//nao vazio, marcar e sair
@@ -486,7 +538,7 @@ let a = Number(tile1.dataset.colunas)-1;
                 break; } }
 
 
-                for (let j=w; j<=5; j++) { // 下 for
+                for (let j=w; j<=7; j++) { // 下 for
                 if (gameMatrix[j][colunas] > 0) {//nao vazio, marcar e sair
                 MatrizTemp2[j][colunas] = -2;
                 break;
@@ -518,7 +570,7 @@ let a = Number(tile1.dataset.colunas)-1;
                 break; } }
 
 
-                for (let j=s; j<=5; j++) { // 下 for
+                for (let j=s; j<=7; j++) { // 下 for
                 if (gameMatrix[j][colunas] > 0) {//nao vazio, marcar e sair
                 MatrizTemp2[j][colunas] = -2;
                 break;
@@ -539,7 +591,7 @@ let a = Number(tile1.dataset.colunas)-1;
                 break; } }
 
 
-                for (let j=s; j<=5; j++) { // 下 for
+                for (let j=s; j<=7; j++) { // 下 for
                 if (gameMatrix[j][colunas] > 0) {//nao vazio, marcar e sair
                 MatrizTemp2[j][colunas] = -2;
                 break;
@@ -579,10 +631,14 @@ function conectado(tile1, tile2) {
                                 if(total===0){window.alert("venceu");}
                                 console.log(gameMatrix);
 }
-    
-
 window.onload = initializeGameBoard;
-console.log(gameMatrix);
+
+
+
+
+console.log(`aaaa`,gameMatrix);
+
+
 </script>
 
 </body>
