@@ -6,7 +6,9 @@
     <title>Lian Lian Kan Game</title>
     <style>
         .game-board {
-          
+          background-image: url('https://images3.alphacoders.com/118/1187753.png');
+        background-size: cover; /* 背景图覆盖整个div，保持纵横比 */
+        background-position: center; /* 将背景图居中 */
             display: grid;
             grid-template-columns: repeat(8, 200px);
             grid-template-rows: repeat(8, 200px);
@@ -16,7 +18,7 @@
         .game-tile {
             width: 200px;
             height: 200px;
-            background-color: rgb(0, 0, 0);
+            background-color: rgb(0, 0, 0, 0);
             text-align: center;
             line-height: 50px;
             cursor: pointer;
@@ -45,13 +47,18 @@
   object-fit: cover;
 }
 
+.ima {
+
+justify-content: center;
+align-items: center;}
+
 .game-board {
 
   justify-content: center;
   align-items: center;
   
 
-  background-color: #141414;
+  
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -60,9 +67,13 @@
 
     </style>
 </head>
-<body>
 
-<div id="gameBoard" class="game-board"></div>
+
+
+<div id="gameBoard" class="game-board">
+
+</div>
+
 
 <script>
 let gameMatrix = [];
